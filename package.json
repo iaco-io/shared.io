@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "svelte": "^5",
+    "typescript": "^6"
+  }
+}
