@@ -1,46 +1,53 @@
 <script lang="ts">
   let {
-    borderColor = 'orange',
+    active = false,
+    color = 'gray',
     children,
+    href,
     onclick,
   }: {
-    borderColor?: string
+    active?: boolean
+    color?: string
     children?: any
-    onclick?: () => void
+    href?: string
+    onclick?: (event?: MouseEvent) => void
   } = $props()
 </script>
 
-<button {onclick} class="glass-bg button" style={`--border-color: ${borderColor}`}>
-  {@render children?.()}
-</button>
+{#if href}
+  <a {href} {onclick} class="glass-bg button" class:active style={`--color: ${color}`}>
+    {@render children?.()}
+  </a>
+{:else}
+  <button {onclick} class="glass-bg button" class:active style={`--color: ${color}`}>
+    {@render children?.()}
+  </button>
+{/if}
 
 <style>
   .button {
     position: relative;
     flex: 1;
-    height: calc(100% - 10px);
-    margin: 5px 0;
+    height: 100%;
+    width: 100%;
     border: 0;
     cursor: pointer;
     display: flex;
-    flex-direction: rows;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 2px;
     border-radius: 99px;
-    color: var(--text-h);
-
-    box-shadow:
-      0 0 16px var(--subtle),
-      inset 0 0 1px var(--subtle);
+    color: var(--fg);
+    text-decoration: none;
   }
 
   .button::before {
     content: '';
     position: absolute;
     inset: 0;
-    padding: 0.8px;
+    padding: 1px;
     border-radius: inherit;
+    pointer-events: none;
 
     background: conic-gradient(
       from 45deg,
@@ -48,14 +55,14 @@
       transparent 0deg,
       transparent 35deg,
 
-      color-mix(in srgb, var(--border-color) 85%, transparent) 60deg,
-      color-mix(in srgb, var(--border-color) 25%, transparent) 95deg,
+      color-mix(in srgb, var(--color) 85%, transparent) 60deg,
+      color-mix(in srgb, var(--color) 25%, transparent) 95deg,
 
       transparent 120deg,
       transparent 210deg,
 
-      color-mix(in srgb, var(--border-color) 75%, transparent) 235deg,
-      color-mix(in srgb, var(--border-color) 20%, transparent) 275deg,
+      color-mix(in srgb, var(--color) 75%, transparent) 235deg,
+      color-mix(in srgb, var(--color) 20%, transparent) 275deg,
 
       transparent 300deg
     );
@@ -69,7 +76,10 @@
 
     mask-composite: exclude;
     -webkit-mask-composite: xor;
+  }
 
-    pointer-events: none;
+  .button:active,
+  .button.active {
+    background-color: color-mix(in srgb, var(--color) 30%, transparent);
   }
 </style>

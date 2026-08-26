@@ -1,0 +1,105 @@
+:root {
+  --fg: rgba(0, 0, 0);
+  --bg: rgb(255, 255, 255);
+
+  --red: rgb(233, 21, 45);
+  --orange: rgb(225, 100, 12);
+  --yellow: rgb(204, 155, 65);
+  --green: rgb(0, 137, 50);
+  --mint: rgb(18, 152, 137);
+  --teal: rgb(24, 145, 167);
+  --cyan: rgb(13, 148, 201);
+  --blue: rgb(30, 110, 244);
+  --indigo: rgb(86, 74, 222);
+  --purple: rgb(139, 38, 167);
+  --pink: rgb(208, 29, 124);
+  --brown: rgb(149, 109, 81);
+  --gray: rgb(142, 142, 147);
+  --subtle: rgb(229, 229, 234);
+  --glass: rgb(0 0 0 / 0.05);
+
+  --gray-2: rgb(174, 174, 178);
+  --gray-3: rgb(199, 199, 204);
+  --gray-4: rgb(209, 209, 214);
+  --gray-6: rgb(242, 242, 247);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(fg);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: rgb(255, 255, 255);
+    --bg: rgb(22, 23, 29);
+
+    --red: rgb(255, 97, 101);
+    --orange: rgb(255, 160, 86);
+    --yellow: rgb(254, 223, 67);
+    --green: rgb(74, 217, 104);
+    --mint: rgb(84, 223, 203);
+    --teal: rgb(59, 221, 236);
+    --cyan: rgb(109, 217, 255);
+    --blue: rgb(92, 184, 255);
+    --indigo: rgb(167, 170, 255);
+    --purple: rgb(234, 141, 255);
+    --pink: rgb(255, 138, 196);
+    --brown: rgb(219, 166, 121);
+    --gray: rgb(142, 142, 147);
+    --subtle: rgb(44, 44, 46);
+    --glass: rgb(255 255 255 / 0.12);
+
+    --gray-2: rgb(99, 99, 102);
+    --gray-3: rgb(72, 72, 74);
+    --gray-4: rgb(58, 58, 60);
+    --gray-6: rgb(28, 28, 30);
+  }
+}
+
+html {
+  scrollbar-width: none;
+  height: 100%;
+}
+
+body {
+  color: var(--fg);
+  margin: 0;
+  height: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  transition: opacity 0.15s ease, box-shadow 0.15s ease, background-color 0.5s ease;
+}
+
+button:active {
+  opacity: 0.6;
+  box-shadow: var(--subtle) 0 0 10px 1px;
+}
+
+.glass-bg {
+  background: var(--glass);
+  backdrop-filter: saturate(180%) blur(8px);
+}
+
+.icon {
+  height: 20px;
+  stroke-width: 1.4px;
+}
+
+.icon-shadow {
+  filter: drop-shadow(0 0 2px var(--bg));
+}
