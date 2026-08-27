@@ -5,6 +5,7 @@
     "typescript": "^6"
   },
   "dependencies": {
+    "@lucide/svelte": "^1.34.0",
     "ogl": "^1.0.11"
   }
 }
