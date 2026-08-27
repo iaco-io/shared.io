@@ -16,7 +16,7 @@
   --brown: rgb(149, 109, 81);
   --gray: rgb(142, 142, 147);
   --subtle: rgb(229, 229, 234);
-  --glass: rgb(0 0 0 / 0.05);
+  --glass: rgb(0 0 0 / 2.2%);
 
   --gray-2: rgb(174, 174, 178);
   --gray-3: rgb(199, 199, 204);
@@ -57,7 +57,7 @@
     --brown: rgb(219, 166, 121);
     --gray: rgb(142, 142, 147);
     --subtle: rgb(44, 44, 46);
-    --glass: rgb(255 255 255 / 0.12);
+    --glass: rgb(255 255 255 /10%);
 
     --gray-2: rgb(99, 99, 102);
     --gray-3: rgb(72, 72, 74);
@@ -66,26 +66,59 @@
   }
 }
 
-html {
+html,
+body {
+  overscroll-behavior: none;
   scrollbar-width: none;
-  height: 100%;
+  height: 100svh;
 }
 
 body {
   color: var(--fg);
   margin: 0;
-  height: 100%;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+}
+
+main {
+  position: relative;
+  z-index: 10;
+  scrollbar-width: none;
+  overflow: scroll;
+  min-height: 100px;
+  height: 100dvh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0 0 0 0;
 }
 
 p {
   margin: 0;
 }
 
-button {
-  transition: opacity 0.15s ease, box-shadow 0.15s ease, background-color 0.5s ease;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-button:active {
+img,
+a {
+  -webkit-user-drag: none;
+}
+
+button,
+a,
+[role="button"] {
+  transition: opacity 0.15s ease, box-shadow 0.15s ease, background-color 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active,
+a:active {
   opacity: 0.6;
   box-shadow: var(--subtle) 0 0 10px 1px;
 }
