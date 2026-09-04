@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import Button from './Button.svelte'
   import './style.css'
-  import { onMount } from 'svelte'
 
   let {
     color = 'gray',
@@ -28,17 +28,23 @@
   let startY = $state(0)
   let centerX = $state(0)
   let centerY = $state(0)
+  let initialWidth = $state(0)
+  let initialHeight = $state(0)
 
   function updateStartPosition() {
     const rect = anchorEl.getBoundingClientRect()
     startX = rect.left + rect.width / 2
     startY = rect.top + rect.height / 2
+    initialWidth = rect.width
+    initialHeight = rect.height
   }
 
   function openWindow() {
     const rect = anchorEl.getBoundingClientRect()
     startX = rect.left + rect.width / 2
     startY = rect.top + rect.height / 2
+    initialWidth = rect.width
+    initialHeight = rect.height
 
     let posX = 0
     let posY = 0
@@ -99,19 +105,21 @@
     class:open
     class:initialized
     style="
-			--start-x: {startX}px;
-			--start-y: {startY}px;
-			--center-x: {centerX}px;
-			--center-y: {centerY}px;
-			--win-width: {Math.min(
+      --start-x: {startX}px;
+      --start-y: {startY}px;
+      --initial-width: {initialWidth}px;
+      --initial-height: {initialHeight}px;
+      --center-x: {centerX}px;
+      --center-y: {centerY}px;
+      --win-width: {Math.min(
       winWidth,
       typeof window === 'undefined' ? winWidth : window.innerWidth,
     )}px;
-			--win-height: {Math.min(
+      --win-height: {Math.min(
       winHeight,
       typeof window === 'undefined' ? winHeight : window.innerHeight,
     )}px;
-		"
+    "
   >
     {#if open}
       <button class="close" onclick={() => (open = false)}>×</button>
@@ -129,8 +137,8 @@
 
 <style>
   .anchor {
-    width: 100px;
-    height: 44px;
+    width: 100%;
+    height: 100%;
   }
 
   .backdrop {
@@ -153,19 +161,17 @@
     left: var(--start-x);
     top: var(--start-y);
 
+    width: var(--initial-width);
+    height: var(--initial-height);
+
     transform: translate(-50%, -50%);
 
-    width: 100px;
-    height: 44px;
-
     border-radius: 22px;
-    background: var(--bg);
-    /* box-shadow: 0 8px 30px rgb(0 0 0 / 100%); */
   }
 
   /*
-	 * Transitions only enabled after initial position was set
-	 */
+   * Transitions only enabled after initial position was set
+   */
   .window.initialized {
     transition:
       left 400ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -183,6 +189,13 @@
     height: var(--win-height);
 
     border-radius: 16px;
+    border: 1px solid var(--gray);
+
+    padding: 8px;
+    overflow: scroll;
+    scrollbar-width: none;
+    box-sizing: border-box;
+    background: var(--bg);
   }
 
   .close {
