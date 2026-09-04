@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state'
   import type { Component } from 'svelte'
+  import './style.css'
 
   type NavTab = {
     title: string
@@ -31,17 +32,13 @@
 </nav>
 
 <style>
-  :root {
-    --tab-size: 40px;
-  }
-
   nav {
     position: absolute;
     left: 0;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    width: var(--tab-size);
+    width: var(--navbar-size);
     height: 100dvh;
     padding-top: 30px;
     scrollbar-width: none;
@@ -53,7 +50,7 @@
     color: var(--fg);
     text-shadow: 0 0 4px var(--bg);
     width: 100%;
-    height: calc(var(--tab-size) + 10px);
+    height: calc(var(--navbar-size) + 10px);
     margin: 5px 0;
     border: none;
     background: none;
@@ -72,7 +69,7 @@
 
   @media (max-width: 600px) {
     .bottom-nav {
-      height: calc(var(--tab-size) + env(safe-area-inset-bottom));
+      height: calc(var(--navbar-size) + env(safe-area-inset-bottom));
     }
 
     nav {
@@ -92,7 +89,7 @@
       align-items: center;
       justify-content: start;
       box-sizing: border-box;
-      height: calc(var(--tab-size) + env(safe-area-inset-bottom));
+      height: calc(var(--navbar-size) + env(safe-area-inset-bottom));
       margin: 0 5px;
       padding: 4px 0;
     }

@@ -36,6 +36,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --navbar-size: 40px;
 }
 
 @media (prefers-color-scheme: dark) {
